@@ -1,0 +1,27 @@
+- hosts: vm1
+  become: yes
+  tasks:
+
+   - name: Install apache 
+     ansible.builtin.apt:
+      name: unzip
+      state: absent
+      update_cache: yes
+     notify:
+       - Creat user brad
+       - Restart service apache
+
+  handlers:
+   - name: Restart service apache
+     ansible.builtin.service:
+      name: apache2
+      state: restarted
+      
+   - name: Creat user brad
+     ansible.builtin.service:
+      name: brad
+       
+        
+
+
+      
